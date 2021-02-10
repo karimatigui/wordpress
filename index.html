@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<title>Contact Us Style Four &#8211; consultix</title>
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+<link rel="alternate" type="application/rss+xml" title="consultix &raquo; Feed" href="http://localhost/ZUM/test/wordpress/feed/" />
+<link rel="alternate" type="application/rss+xml" title="consultix &raquo; Comments Feed" href="http://localhost/ZUM/test/wordpress/comments/feed/" />
+<link rel="alternate" type="text/calendar" title="consultix &raquo; iCal Feed" href="http://localhost/ZUM/test/wordpress/events/?ical=1" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"wpemoji":"http:\/\/localhost\/ZUM\/test\/wordpress\/wp-includes\/js\/wp-emoji.js?ver=5.6.1","twemoji":"http:\/\/localhost\/ZUM\/test\/wordpress\/wp-includes\/js\/twemoji.js?ver=5.6.1"}};
+			/**
+ * @output wp-includes/js/wp-emoji-loader.js
+ */
+
+( function( window, document, settings ) {
+	var src, ready, ii, tests;
+
+	// Create a canvas element for testing native browser support of emoji.
+	var canvas = document.createElement( 'canvas' );
+	var context = canvas.getContext && canvas.getContext( '2d' );
+
+	/**
+	 * Checks if two sets of Emoji characters render the same visually.
+	 *
+	 * @since 4.9.0
+	 *
+	 * @private
+	 *
+	 * @param {number[]} set1 Set of Emoji character codes.
+	 * @param {number[]} set2 Set of Emoji character codes.
+	 *
+	 * @return {boolean} True if the two sets render the same.
+	 */
+	function emojiSetsRenderIdentically( set1, set2 ) {
+		var stringFromCharCode = String.fromCharCode;
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set1 ), 0, 0 );
+		var rendered1 = canvas.toDataURL();
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set2 ), 0, 0 );
+		var rendered2 = canvas.toDataURL();
+
+		return rendered1 === rendered2;
+	}
+
+	/**
+	 * Detects if the browser supports rendering emoji or flag emoji.
+	 *
+	 * Flag emoji are a single glyph made of two characters, so some browsers
+	 * (notably, Firefox OS X) don't support them.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @private
+	 *
+	 * @param {string} type Whether to test for support of "flag" or "emoji".
+	 *
+	 * @return {boolean} True if the browser can render emoji, false if it cannot.
+	 */
+	function browserSupportsEmoji( type ) {
+		var isIdentical;
+
+		if ( ! context || ! context.fillText ) {
+			return false;
+		}
+
+		/*
+		 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
+		 * it doesn't work when the font is bolder than 500 weight. So, we
+		 * check for bold rendering support to avoid invisible emoji in Chrome.
+		 */
+		context.textBaseline = 'top';
+		context.font = '600 32px Arial';
+
+		switch ( type ) {
+			case 'flag':
+				/*
+				 * Test for Transgender flag compatibility. This flag is shortlisted for the Emoji 13 spec,
+				 * but has landed in Twemoji early, so we can add support for it, too.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (white flag emoji + transgender symbol).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0x1F3F3, 0xFE0F, 0x200D, 0x26A7, 0xFE0F ],
+					[ 0x1F3F3, 0xFE0F, 0x200B, 0x26A7, 0xFE0F ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for UN flag compatibility. This is the least supported of the letter locale flags,
+				 * so gives us an easy test for full support.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly ([U] + [N]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDDFA, 0xD83C, 0xDDF3 ],
+					[ 0xD83C, 0xDDFA, 0x200B, 0xD83C, 0xDDF3 ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for English flag compatibility. England is a country in the United Kingdom, it
+				 * does not have a two letter locale code but rather an five letter sub-division code.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (black flag emoji + [G] + [B] + [E] + [N] + [G]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDFF4, 0xDB40, 0xDC67, 0xDB40, 0xDC62, 0xDB40, 0xDC65, 0xDB40, 0xDC6E, 0xDB40, 0xDC67, 0xDB40, 0xDC7F ],
+					[ 0xD83C, 0xDFF4, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC62, 0x200B, 0xDB40, 0xDC65, 0x200B, 0xDB40, 0xDC6E, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC7F ]
+				);
+
+				return ! isIdentical;
+			case 'emoji':
+				/*
+				 * So easy, even a baby could do it!
+				 *
+				 *  To test for Emoji 13 support, try to render a new emoji: Man Feeding Baby.
+				 *
+				 * The Man Feeding Baby emoji is a ZWJ sequence combining 👨 Man, a Zero Width Joiner and 🍼 Baby Bottle.
+				 *
+				 * 0xD83D, 0xDC68 == Man emoji.
+				 * 0x200D == Zero-Width Joiner (ZWJ) that links the two code points for the new emoji or
+				 * 0x200B == Zero-Width Space (ZWS) that is rendered for clients not supporting the new emoji.
+				 * 0xD83C, 0xDF7C == Baby Bottle.
+				 *
+				 * When updating this test for future Emoji releases, ensure that individual emoji that make up the
+				 * sequence come from older emoji standards.
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[0xD83D, 0xDC68, 0x200D, 0xD83C, 0xDF7C],
+					[0xD83D, 0xDC68, 0x200B, 0xD83C, 0xDF7C]
+				);
+
+				return ! isIdentical;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Adds a script to the head of the document.
+	 *
+	 * @ignore
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param {Object} src The url where the script is located.
+	 * @return {void}
+	 */
+	function addScript( src ) {
+		var script = document.createElement( 'script' );
+
+		script.src = src;
+		script.defer = script.type = 'text/javascript';
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}
+
+	tests = Array( 'flag', 'emoji' );
+
+	settings.supports = {
+		everything: true,
+		everythingExceptFlag: true
+	};
+
+	/*
+	 * Tests the browser support for flag emojis and other emojis, and adjusts the
+	 * support settings accordingly.
+	 */
+	for( ii = 0; ii < tests.length; ii++ ) {
+		settings.supports[ tests[ ii ] ] = browserSupportsEmoji( tests[ ii ] );
+
+		settings.supports.everything = settings.supports.everything && settings.supports[ tests[ ii ] ];
+
+		if ( 'flag' !== tests[ ii ] ) {
+			settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && settings.supports[ tests[ ii ] ];
+		}
+	}
+
+	settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && ! settings.supports.flag;
+
+	// Sets DOMReady to false and assigns a ready function to settings.
+	settings.DOMReady = false;
+	settings.readyCallback = function() {
+		settings.DOMReady = true;
+	};
+
+	// When the browser can not render everything we need to load a polyfill.
+	if ( ! settings.supports.everything ) {
+		ready = function() {
+			settings.readyCallback();
+		};
+
+		/*
+		 * Cross-browser version of adding a dom ready event.
+		 */
+		if ( document.addEventListener ) {
+			document.addEventListener( 'DOMContentLoaded', ready, false );
+			window.addEventListener( 'load', ready, false );
+		} else {
+			window.attachEvent( 'onload', ready );
+			document.attachEvent( 'onreadystatechange', function() {
+				if ( 'complete' === document.readyState ) {
+					settings.readyCallback();
+				}
+			} );
+		}
+
+		src = settings.source || {};
+
+		if ( src.concatemoji ) {
+			addScript( src.concatemoji );
+		} else if ( src.wpemoji && src.twemoji ) {
+			addScript( src.twemoji );
+			addScript( src.wpemoji );
+		}
+	}
+
+} )( window, document, window._wpemojiSettings );
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' href='css/gtranslate-gtranslate-style16.css'>
+<link rel='stylesheet' href='css/the-events-calendar-common-src-resources-css-common-skeleton.min.css'>
+<link rel='stylesheet' href='css/the-events-calendar-common-src-resources-css-tooltip.min.css'>
+<link rel='stylesheet' href='css/dist-block-library-style.css'>
+<link rel='stylesheet' href='css/dist-block-library-theme.css'>
+<link rel='stylesheet' href='css/woocommerce-packages-woocommerce-blocks-build-vendors-style.css'>
+<link rel='stylesheet' href='css/woocommerce-packages-woocommerce-blocks-build-style.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-gutenberg-blocks.css'>
+<link rel='stylesheet' href='css/contact-form-7-includes-css-styles.css'>
+<link rel='stylesheet' href='css/radiantthemes-addons-widget-contact-box-css-consultix-contact-box.css'>
+<link rel='stylesheet' href='css/radiantthemes-addons-widget-recent-posts-css-consultix-recent-post-with-thumbnail-element-one.css'>
+<link rel='stylesheet' href='css/radiantthemes-mega-menu-assets-css-rt-megamenu.css'>
+<link rel='stylesheet' href='css/revslider-public-assets-css-rs6.css'>
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' href='css/woocommerce-assets-css-woocommerce-layout.css'>
+<link rel='stylesheet' href='css/woocommerce-assets-css-woocommerce-smallscreen.css'>
+<link rel='stylesheet' href='css/woocommerce-assets-css-woocommerce.css'>
+<style id='woocommerce-inline-inline-css' type='text/css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' href='css/consultix-css-bootstrap.min.css'>
+<link rel='stylesheet' href='css/consultix-css-font-awesome.min.css'>
+<link rel='stylesheet' href='css/consultix-css-elusive-icons.min.css'>
+<link rel='stylesheet' href='css/consultix-css-animate.min.css'>
+<link rel='stylesheet' href='css/js_composer-assets-css-js_composer.min.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-custom.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-responsive.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-header-style-nine.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-footer-style-three.css'>
+<link rel='stylesheet' href='css/consultix-css-radiantthemes-color-scheme-midnight-blue.css'>
+<link rel='stylesheet' href='css/consultix-style.css'>
+<link rel='stylesheet' href='css/radiantthemes-addons-button-css-radiantthemes-button-element-one.css'>
+<style id='radiantthemes-button-element-one-inline-css' type='text/css'>
+.team.element-six .team-item > .holder .data .btn, .rt-button.element-one > .rt-button-main, .rt-fancy-text-box > .holder > .more .btn, .rt-call-to-action-wraper .rt-call-to-action-item .btn:hover, .radiant-contact-form .form-row input[type=submit] {  border-radius:30px 30px 30px 30px ; }
+</style>
+<link rel="preload" as="style" href="css/7043.css"><link rel="stylesheet" href="css/8355.css"><noscript><link rel="stylesheet" href="css/7043.css"></noscript>		<script>
+			/* <![CDATA[ */
+			var rcewpp = {
+				"ajax_url":"http://localhost/ZUM/test/wordpress/wp-admin/admin-ajax.php",
+				"nonce": "2ce24568bc",
+				"home_url": "http://localhost/ZUM/test/wordpress"
+			};
+			/* ]]\> */
+		</script>
+		<script type='text/javascript' src='js/jquery.js' id='jquery-core-js'></script>
+<script type='text/javascript' src='js/jquery-migrate.js' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='js/rbtools.min.js' id='tp-tools-js'></script>
+<script type='text/javascript' src='js/rs6.min.js' id='revmin-js'></script>
+<script type='text/javascript' src='js/jquery.blockUI.js' id='jquery-blockui-js'></script>
+<script type='text/javascript' id='wc-add-to-cart-js-extra'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/ZUM\/test\/wordpress\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/ZUM\/test\/wordpress\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"http:\/\/localhost\/ZUM\/test\/wordpress\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='js/add-to-cart.js' id='wc-add-to-cart-js'></script>
+<script type='text/javascript' src='js/woocommerce-add-to-cart.js' id='vc_woocommerce-add-to-cart-js-js'></script>
+<script type='text/javascript' src='js/retina.min.js' id='retina-js'></script>
+<link rel="https://api.w.org/" href="http://localhost/ZUM/test/wordpress/wp-json/" /><link rel="alternate" type="application/json" href="http://localhost/ZUM/test/wordpress/wp-json/wp/v2/pages/7300" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/ZUM/test/wordpress/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/ZUM/test/wordpress/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.6.1" />
+<meta name="generator" content="WooCommerce 4.9.2" />
+<link rel="canonical" href="http://localhost/ZUM/test/wordpress/contact-us-style-four/" />
+<link rel='shortlink' href='http://localhost/ZUM/test/wordpress/?p=7300' />
+<link rel="alternate" type="application/json+oembed" href="http://localhost/ZUM/test/wordpress/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2FZUM%2Ftest%2Fwordpress%2Fcontact-us-style-four%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://localhost/ZUM/test/wordpress/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%2FZUM%2Ftest%2Fwordpress%2Fcontact-us-style-four%2F&#038;format=xml" />
+<meta name="framework" content="Redux 4.1.24" /><meta name="tec-api-version" content="v1"><meta name="tec-api-origin" content="http://localhost/ZUM/test/wordpress"><link rel="https://theeventscalendar.com/" href="http://localhost/ZUM/test/wordpress/wp-json/tribe/events/v1/" />			<link rel="icon" href="http://localhost/ZUM/test/wordpress/wp-content/uploads/2021/02/logo.png" sizes="32x32" />
+			<link rel="icon" href="http://localhost/ZUM/test/wordpress/wp-content/uploads/2021/02/logo.png" sizes="192x192">
+			<link rel="apple-touch-icon-precomposed" href="http://localhost/ZUM/test/wordpress/wp-content/uploads/2021/02/logo.png" />
+			<meta name="msapplication-TileImage" content="http://localhost/ZUM/test/wordpress/wp-content/uploads/2021/02/logo.png" />
+					<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<meta name="generator" content="Powered by Slider Revolution 6.3.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<script type="text/javascript">function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {				 
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;	
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;	
+				try {								
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);		
+					if(e.layout==="fullscreen" || e.l==="fullscreen") 						
+						newh = Math.max(e.mh,window.RSIH);					
+					else{					
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];					
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,						
+							sl;					
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;					
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];									
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}															
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);					
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}				
+					if(window.rs_init_css===undefined) window.rs_init_css = document.head.appendChild(document.createElement("style"));					
+					document.getElementById(e.c).height = newh+"px";
+					window.rs_init_css.innerHTML += "#"+e.c+"_wrapper { height: "+newh+"px }";				
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}					   
+			//});
+		  };</script>
+<style id="consultix_theme_option-dynamic-css" title="dynamic-css" class="redux-options-output">body{font-family:Rubik;line-height:26px;font-weight:400;font-style:normal;color:#333333;font-size:15px;font-display:swap;}h1{font-family:Poppins;line-height:50px;letter-spacing:0px;font-weight:800;font-style:normal;color:#221543;font-size:43px;font-display:swap;}h2{font-family:Poppins;line-height:45px;font-weight:800;font-style:normal;color:#221543;font-size:43px;font-display:swap;}h3{font-family:Poppins;line-height:35px;font-weight:700;font-style:normal;color:#221543;font-size:30px;font-display:swap;}h4{font-family:Poppins;line-height:35px;font-weight:600;font-style:normal;color:#221543;font-size:24px;font-display:swap;}h5{font-family:Poppins;line-height:30px;letter-spacing:0px;font-weight:700;font-style:normal;color:#221543;font-size:18px;font-display:swap;}h6{font-family:Poppins;line-height:27px;font-weight:400;font-style:normal;color:#221543;font-size:16px;font-display:swap;}.scrollup{background-color:#a285bc;}.wraper_header.style-one .wraper_header_top, .wraper_header.style-three .wraper_header_top{background-color:#287ab5;}.wraper_header.style-one .wraper_header_main, .wraper_header.style-two .wraper_header_main, .wraper_header.style-three .wraper_header_main, .wraper_header.style-four, .wraper_header.style-seven .wraper_header_main, .wraper_header.style-eight .wraper_header_main, #hamburger-menu, .wraper_flyout_menu{background-color:#287ab5;}.wraper_header.style-two .wraper_header_main, .wraper_header.style-seven .wraper_header_main, .wraper_header.style-eight .wraper_header_main{border-bottom-color:rgba(255,255,255,0.5);}.wraper_header:not(.style-four):not(.style-five):not(.style-six):not(.style-nine):not(.style-ten) .nav{text-transform:uppercase;line-height:25px;letter-spacing:1px;font-weight:400;font-style:normal;color:#5b5b5b;font-size:13px;font-display:swap;}.wraper_header.style-nine{-moz-box-shadow: 0 0 27px 0 rgba(5,6,6,0.22);-webkit-box-shadow: 0 0 27px 0 rgba(5,6,6,0.22);-ms-box-shadow: 0 0 27px 0 rgba(5,6,6,0.22);-o-box-shadow: 0 0 27px 0 rgba(5,6,6,0.22);box-shadow: 0 0 27px 0 rgba(5,6,6,0.22);}.wraper_header.style-nine .wraper_header_top{background-color:#221543;}.wraper_header.style-nine .wraper_header_main{background-color:#ffffff;}.wraper_header.style-nine .nav{font-family:Rubik;text-transform:uppercase;line-height:25px;font-weight:400;font-style:normal;color:#4d4d4d;font-size:13px;font-display:swap;}.wraper_header.style-nine .nav > [class*="menu-"] > ul.menu > li:hover > a, .wraper_header.style-nine .nav > [class*="menu-"] > ul.menu > li.current-menu-item > a, .wraper_header.style-nine .nav > [class*="menu-"] > ul.menu > li.current-menu-parent > a, .wraper_header.style-nine .nav > [class*="menu-"] > ul.menu > li.current-menu-ancestor > a{color:#4F3E79;}.wraper_header.style-ten .wraper_header_top{background-color:rgba(14,13,13,0.4);}.wraper_header.style-ten .wraper_header_main{background-color:rgba(0,0,0,0.01);}.wraper_header.style-ten .nav{font-family:Rubik;text-transform:uppercase;line-height:25px;font-weight:700;font-style:normal;color:#fff;font-size:15px;font-display:swap;}.wraper_header.style-ten .nav > [class*="menu-"] > ul.menu > li:hover > a, .wraper_header.style-ten .nav > [class*="menu-"] > ul.menu > li.current-menu-item > a, .wraper_header.style-ten .nav > [class*="menu-"] > ul.menu > li.current-menu-parent > a, .wraper_header.style-ten .nav > [class*="menu-"] > ul.menu > li.current-menu-ancestor > a{color:#221543;}.wraper_inner_banner{background-color:#f6f6f6;background-repeat:no-repeat;background-image:url('http://localhost/ZUM/test/wordpress/wp-content/uploads/2018/02/Inner-Banner-Background-Image-1.png');background-size:cover;}.wraper_inner_banner_main{border-bottom-color:rgba(255,255,255,0.01);}.wraper_inner_banner_main > .container{padding-top:38px;padding-bottom:5px;}.inner_banner_main .title{font-family:Poppins;line-height:40px;letter-spacing:0px;font-weight:800;font-style:normal;color:#221543;font-size:32px;font-display:swap;}.inner_banner_main .subtitle{font-family:Poppins;line-height:26px;font-weight:600;font-style:normal;color:#221543;font-size:18px;font-display:swap;}.inner_banner_breadcrumb #crumbs{font-family:Poppins;text-transform:uppercase;line-height:22px;letter-spacing:1px;font-weight:400;font-style:normal;color:#727272;font-size:13px;font-display:swap;}.wraper_inner_banner_breadcrumb > .container{padding-top:0px;padding-bottom:10px;}.wraper_footer{background-color:#221543;background-repeat:no-repeat;background-position:right top;background-image:url('http://localhost/ZUM/test/wordpress/wp-content/themes/consultix/images/footer-8.jpg');background-size:cover;}.wraper_footer_main{border-bottom-color:rgba(255,255,255,0.01);}.wraper_footer_copyright{background-color:#2c1f4e;}.rt-button.element-one > .rt-button-main, .radiant-contact-form .form-row input[type=submit], .radiant-contact-form .form-row input[type=button], .radiant-contact-form .form-row button[type=submit], .post.style-two .post-read-more .btn, .post.style-three .entry-main .post-read-more .btn, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button, .woocommerce form .form-row input.button, .widget-area > .widget.widget_price_filter .button, .rt-fancy-text-box.element-one > .holder > .more > a, .rt-fancy-text-box.element-two > .holder > .more > a, .rt-fancy-text-box.element-three > .holder > .more > a, .rt-fancy-text-box.element-four > .holder > .more > a, .team.element-six .team-item > .holder .data .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn{padding-top:12px;padding-right:30px;padding-bottom:12px;padding-left:30px;}.rt-button.element-one > .rt-button-main, .radiant-contact-form .form-row input[type=submit], .radiant-contact-form .form-row input[type=button], .radiant-contact-form .form-row button[type=submit], .post.style-two .post-read-more .btn, .post.style-three .entry-main .post-read-more .btn, .woocommerce #respond input#submit, .woocommerce form .form-row input.button, .woocommerce .return-to-shop .button, .widget-area > .widget.widget_price_filter .button, .rt-fancy-text-box.element-one > .holder > .more > a, .rt-fancy-text-box.element-two > .holder > .more > a, .rt-fancy-text-box.element-three > .holder > .more > a, .rt-fancy-text-box.element-four > .holder > .more > a, .team.element-six .team-item > .holder .data .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn{background-color:#221543;}.rt-button.element-one[class*="hover-style-"] .rt-button-main > .overlay, .radiant-contact-form .form-row input[type=submit]:hover, .radiant-contact-form .form-row input[type=button]:hover, .radiant-contact-form .form-row button[type=submit]:hover, .post.style-two .post-read-more .btn:hover, .post.style-three .entry-main .post-read-more .btn:hover, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button:hover, .woocommerce form .form-row input.button:hover, .widget-area > .widget.widget_price_filter .button:hover, .rt-fancy-text-box.element-one > .holder > .more > a:hover, .rt-fancy-text-box.element-two > .holder > .more > a:hover, .rt-fancy-text-box.element-three > .holder > .more > a:hover, .rt-fancy-text-box.element-four > .holder > .more > a:hover, .team.element-six .team-item > .holder .data .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn:hover, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn:hover{background-color:#7866a6;}.rt-button.element-one > .rt-button-main, .radiant-contact-form .form-row input[type=submit], .radiant-contact-form .form-row input[type=button], .radiant-contact-form .form-row button[type=submit], .post.style-two .post-read-more .btn, .post.style-three .entry-main .post-read-more .btn, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button, .woocommerce form .form-row input.button, .widget-area > .widget.widget_price_filter .button, .rt-fancy-text-box.element-one > .holder > .more > a, .rt-fancy-text-box.element-two > .holder > .more > a, .rt-fancy-text-box.element-three > .holder > .more > a, .rt-fancy-text-box.element-four > .holder > .more > a, .team.element-six .team-item > .holder .data .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn{border-top:2px solid #ededed;border-bottom:2px solid #ededed;border-left:2px solid #ededed;border-right:2px solid #ededed;}.rt-button.element-one > .rt-button-main:hover, .radiant-contact-form .form-row input[type=submit]:hover, .radiant-contact-form .form-row input[type=button]:hover, .radiant-contact-form .form-row button[type=submit]:hover, .post.style-two .post-read-more .btn:hover, .post.style-three .entry-main .post-read-more .btn:hover, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button:hover, .woocommerce form .form-row input.button:hover, .widget-area > .widget.widget_price_filter .button:hover, .rt-fancy-text-box.element-one > .holder > .more > a:hover, .rt-fancy-text-box.element-two > .holder > .more > a:hover, .rt-fancy-text-box.element-three > .holder > .more > a:hover, .rt-fancy-text-box.element-four > .holder > .more > a:hover, .team.element-six .team-item > .holder .data .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn:hover, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn:hover{border-top:2px solid #ffffff;border-bottom:2px solid #ffffff;border-left:2px solid #ffffff;border-right:2px solid #ffffff;}.rt-button.element-one > .rt-button-main, .radiant-contact-form .form-row input[type=submit], .radiant-contact-form .form-row input[type=button], .radiant-contact-form .form-row button[type=submit], .post.style-two .post-read-more .btn, .post.style-three .entry-main .post-read-more .btn, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button, .woocommerce form .form-row input.button, .widget-area > .widget.widget_price_filter .button, .rt-fancy-text-box.element-one > .holder > .more > a, .rt-fancy-text-box.element-two > .holder > .more > a, .rt-fancy-text-box.element-three > .holder > .more > a, .rt-fancy-text-box.element-four > .holder > .more > a, .team.element-six .team-item > .holder .data .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn{-moz-box-shadow:     rgb(0,0,0);-webkit-box-shadow:     rgb(0,0,0);-ms-box-shadow:     rgb(0,0,0);-o-box-shadow:     rgb(0,0,0);box-shadow:     rgb(0,0,0);}.rt-button.element-one > .rt-button-main, .radiant-contact-form .form-row input[type=submit], .radiant-contact-form .form-row input[type=button], .radiant-contact-form .form-row button[type=submit], .post.style-two .post-read-more .btn, .post.style-three .entry-main .post-read-more .btn, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button, .woocommerce form .form-row input.button, .widget-area > .widget.widget_price_filter .button, .rt-fancy-text-box.element-one > .holder > .more > a, .rt-fancy-text-box.element-two > .holder > .more > a, .rt-fancy-text-box.element-three > .holder > .more > a, .rt-fancy-text-box.element-four > .holder > .more > a, .team.element-six .team-item > .holder .data .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn{font-family:Rubik;text-transform:uppercase;line-height:25px;letter-spacing:1px;font-weight:500;font-style:normal;color:#ffffff;font-size:12px;font-display:swap;}.rt-button.element-one > .rt-button-main:hover, .radiant-contact-form .form-row input[type=submit]:hover, .radiant-contact-form .form-row input[type=button]:hover, .radiant-contact-form .form-row button[type=submit]:hover, .post.style-two .post-read-more .btn:hover, .post.style-three .entry-main .post-read-more .btn:hover, .woocommerce #respond input#submit, .woocommerce .return-to-shop .button:hover, .woocommerce form .form-row input.button:hover, .widget-area > .widget.widget_price_filter .button:hover, .rt-fancy-text-box.element-one > .holder > .more > a:hover, .rt-fancy-text-box.element-two > .holder > .more > a:hover, .rt-fancy-text-box.element-three > .holder > .more > a:hover, .rt-fancy-text-box.element-four > .holder > .more > a:hover, .team.element-six .team-item > .holder .data .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title .btn:hover, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title .btn:hover, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data .btn:hover, .rt-portfolio-box.element-four .rt-portfolio-box-item > .holder > .pic > .data .btn:hover{color:#ffffff;}.rt-button.element-one > .rt-button-main i{color:#ffffff;}.rt-button.element-one > .rt-button-main:hover i{color:#ffffff;}.radiant-contact-form .form-row input[type=text], .radiant-contact-form .form-row input[type=email], .radiant-contact-form .form-row input[type=url], .radiant-contact-form .form-row input[type=tel], .radiant-contact-form .form-row input[type=number], .radiant-contact-form .form-row input[type=password], .radiant-contact-form .form-row input[type=date], .radiant-contact-form .form-row input[type=time], .radiant-contact-form .form-row select{height:45px;}.radiant-contact-form .form-row textarea{height:55px;}.radiant-contact-form .form-row input[type=text]:focus, .radiant-contact-form .form-row input[type=email]:focus, .radiant-contact-form .form-row input[type=url]:focus, .radiant-contact-form .form-row input[type=tel]:focus, .radiant-contact-form .form-row input[type=number]:focus, .radiant-contact-form .form-row input[type=password]:focus, .radiant-contact-form .form-row input[type=date]:focus, .radiant-contact-form .form-row input[type=time]:focus, .radiant-contact-form .form-row select:focus, .radiant-contact-form .form-row textarea:focus{padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;}.radiant-contact-form .form-row input[type=text], .radiant-contact-form .form-row input[type=email], .radiant-contact-form .form-row input[type=url], .radiant-contact-form .form-row input[type=tel], .radiant-contact-form .form-row input[type=number], .radiant-contact-form .form-row input[type=password], .radiant-contact-form .form-row input[type=date], .radiant-contact-form .form-row input[type=time], .radiant-contact-form .form-row select, .radiant-contact-form .form-row textarea{-moz-box-shadow: 0 0 0 0 rgb(0,0,0);-webkit-box-shadow: 0 0 0 0 rgb(0,0,0);-ms-box-shadow: 0 0 0 0 rgb(0,0,0);-o-box-shadow: 0 0 0 0 rgb(0,0,0);box-shadow: 0 0 0 0 rgb(0,0,0);}.rt-accordion.element-one .rt-accordion-item{background-color:#ffffff;}.rt-accordion.element-two .rt-accordion-item > .rt-accordion-item-title > .rt-accordion-item-title-icon > .holder{background-color:#00174d;}.rt-accordion.element-two .rt-accordion-item.rt-active > .rt-accordion-item-title > .panel-title{color:#00174d;}.rt-accordion.element-three .rt-accordion-item > .rt-accordion-item-title > .rt-accordion-item-title-icon > .holder i, .rt-accordion.element-three .rt-accordion-item > .rt-accordion-item-title > .panel-title{color:#221543;}.rt-fancy-text-box.element-one > .holder > .title > .icon i, .rt-fancy-text-box.element-one > .holder > .title > .fancy-text-tag, .rt-fancy-text-box.element-one > .holder > .title > .fancy-text-tag > a, .rt-fancy-text-box.element-two > .holder > .icon i, .rt-fancy-text-box.element-two > .holder > .title > .fancy-text-tag, .rt-fancy-text-box.element-two > .holder > .title > .fancy-text-tag > a, .rt-fancy-text-box.element-three > .holder > .title > .fancy-text-tag, .rt-fancy-text-box.element-three > .holder > .title > .fancy-text-tag > a, .rt-fancy-text-box.element-four > .holder > .title > .fancy-text-tag, .rt-fancy-text-box.element-four > .holder > .title > .fancy-text-tag > a{color:#221543;}.rt-pricing-table.element-one > .holder > .data{background-color:#ffdc40;}.rt-pricing-table.element-one > .holder > .data h5{color:#ffffff;}.rt-pricing-table.element-one > .holder > .data .btn{background-color:#ffffff;}.rt-pricing-table.element-two.spotlight > .holder > .title:before, .rt-pricing-table.element-two.spotlight > .holder > .title:after, .rt-pricing-table.element-two > .holder > .title h4:before, .rt-pricing-table.element-two > .holder > .data .btn{background-color:#e60e46;}.rt-pricing-table.element-two > .holder > .title h5{color:#e60e46;}.rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .title, .rt-portfolio-box.element-one .rt-portfolio-box-item > .holder > .data, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .title > .table, .rt-portfolio-box.element-two .rt-portfolio-box-item > .holder > .pic > .data > .table{background-color:rgba(71,55,111,0.8);}.testimonial.element-one .testimonial-item > .holder > .title h5{color:#001a57;}.testimonial.element-one .testimonial-item > .holder > .title p{color:#ffffff;}.testimonial.element-one .testimonial-item > .holder > .data{background-color:#f2f0ee;}.testimonial.element-one .testimonial-item > .holder > .data:before{border-top-color:#f2f0ee;}.testimonial.element-one .testimonial-item > .holder > .data blockquote p{color:#b9cbf4;}.testimonial.element-two .testimonial-item > .holder > .title h5{color:#ffffff;}.testimonial.element-two .testimonial-item > .holder > .data blockquote p{color:#d8d4d4;}.testimonial.element-two .testimonial-item > .holder > .meta ul.social li a i{color:#ffffff;}.testimonial.element-three .testimonial-item > .holder > .data h5{color:#ffffff;}.testimonial.element-three .testimonial-item > .holder > .data blockquote p{color:#d8d4d4;}.testimonial.element-three .testimonial-item > .holder > .data ul.rating li i{color:#ffffff;}.testimonial.element-four .testimonial-item > .holder > .data h5{color:#ffffff;}.testimonial.element-four .testimonial-item > .holder > .data{background-color:rgba(0,0,0,0.01);}.testimonial.element-four .testimonial-item > .holder > .data blockquote p{color:#d8d4d4;}.testimonial.element-four .testimonial-item > .holder > .data ul.rating li i{color:#ffffff;}.testimonial.element-five .testimonial-item > .holder > .title h5{color:#ffffff;}.testimonial.element-five .testimonial-item > .holder > .title p{color:#001a57;}.testimonial.element-five .testimonial-item > .holder > .data{background-color:#584835;}.testimonial.element-five .testimonial-item > .holder > .data blockquote p{color:#ffffff;}.testimonial.element-six .testimonial-item > .holder > .data h5{color:#001a57;}.testimonial.element-six .testimonial-item > .holder > .data blockquote p{color:#222222;}.testimonial.element-seven .testimonial-item > .holder > .title h5{color:#ffffff;}.testimonial.element-seven .testimonial-item > .holder > .title p{color:#001a57;}.testimonial.element-seven .testimonial-item > .holder > .data blockquote p{color:#ffffff;}.testimonial.element-seven .testimonial-item > .holder > .title ul.rating li i{color:#001a57;}.testimonial.element-eight .testimonial-item > .holder > .title h5{color:#001a57;}.testimonial.element-eight .testimonial-item > .holder > .title p{color:#0f5c84;}.testimonial.element-eight .testimonial-item > .holder > .data{background-color:rgba(0,0,0,0.04);}.testimonial.element-eight .testimonial-item > .holder > .data blockquote p{color:#222222;}.testimonial.element-nine .testimonial-item > .holder > .title h5{color:#001a57;}.testimonial.element-nine .testimonial-item > .holder > .title p{color:#0f5c84;}.testimonial.element-nine .testimonial-item > .holder{background-color:rgba(0,0,0,0.02);}.testimonial.element-nine .testimonial-item > .holder > .data blockquote p{color:#222222;}.testimonial.element-ten .testimonial-item > .holder > .data h5{color:#001a57;}.testimonial.element-ten .testimonial-item > .holder > .data .role{color:#ffffff;}.testimonial.element-ten .testimonial-item > .holder > .data blockquote:before{background-color:#ffffff;}.testimonial.element-ten .testimonial-item > .holder > .data blockquote p{color:#b9cbf4;}.rt-loan-calculator.element-one > ul.nav-tabs > li.active > a, .rt-loan-calculator.element-one .rt-loan-calculator-form .form-row .form-row-slider .slider .slider-track > .slider-selection{background-color:#221543;}.rt-loan-calculator.element-one > ul.nav-tabs > li.active > a{border-color:#221543;}.rt-loan-calculator.element-one .rt-loan-calculator-form .result-row .result-row-amount p{color:#221543;}body.error-404-style-one .wraper_error_main, body.error-404-style-two .wraper_error_main{background-color:#0c0c0c;background-repeat:no-repeat;background-attachment:inherit;background-image:url('http://localhost/ZUM/test/wordpress/wp-content/uploads/2018/04/404-Background-Light.png');background-size:cover;}.wraper_error_main > .container{padding-top:180px;padding-bottom:250px;}</style><style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1519729320894{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;background-color: #ffffff !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1519797836561{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 73px !important;padding-bottom: 0px !important;}.vc_custom_1519797771824{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 73px !important;padding-right: 0px !important;padding-bottom: 73px !important;padding-left: 0px !important;}.vc_custom_1519796825636{margin-top: 0px !important;margin-bottom: 0px !important;border-top-width: 1px !important;border-right-width: 1px !important;border-bottom-width: 1px !important;border-left-width: 1px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;border-left-color: #dcdcdc !important;border-left-style: solid !important;border-right-color: #dcdcdc !important;border-right-style: solid !important;border-top-color: #dcdcdc !important;border-top-style: solid !important;border-bottom-color: #dcdcdc !important;border-bottom-style: solid !important;}.vc_custom_1519797124883{border-top-width: 1px !important;border-right-width: 1px !important;border-bottom-width: 1px !important;border-left-width: 1px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;border-left-color: #dcdcdc !important;border-left-style: solid !important;border-right-color: #dcdcdc !important;border-right-style: solid !important;border-top-color: #dcdcdc !important;border-top-style: solid !important;border-bottom-color: #dcdcdc !important;border-bottom-style: solid !important;}.vc_custom_1519796854095{border-top-width: 1px !important;border-right-width: 1px !important;border-bottom-width: 1px !important;border-left-width: 1px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;border-left-color: #dcdcdc !important;border-left-style: solid !important;border-right-color: #dcdcdc !important;border-right-style: solid !important;border-top-color: #dcdcdc !important;border-top-style: solid !important;border-bottom-color: #dcdcdc !important;border-bottom-style: solid !important;}.vc_custom_1519813891054{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519797560097{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 25px !important;padding-right: 40px !important;padding-bottom: 25px !important;padding-left: 40px !important;background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}.vc_custom_1519814004473{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;background-image: url(https://themes.radiantthemes.com/consultix/demo-one/wp-content/uploads/2018/02/icon1-background.png?id=7346) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1519796779689{margin-top: 16px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519813920630{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519797578127{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 25px !important;padding-right: 40px !important;padding-bottom: 25px !important;padding-left: 40px !important;}.vc_custom_1519814036338{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;background-image: url(https://themes.radiantthemes.com/consultix/demo-one/wp-content/uploads/2018/02/icon2-background.png?id=7350) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1519796779689{margin-top: 16px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519813970669{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519797589486{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 25px !important;padding-right: 40px !important;padding-bottom: 25px !important;padding-left: 40px !important;}.vc_custom_1519814061712{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;background-image: url(https://themes.radiantthemes.com/consultix/demo-one/wp-content/uploads/2018/02/icon3-background.png?id=7353) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1519796779689{margin-top: 16px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519797724944{margin-top: 0px !important;margin-bottom: 0px !important;border-top-width: 1px !important;border-right-width: 1px !important;border-bottom-width: 1px !important;border-left-width: 1px !important;padding-top: 37px !important;padding-right: 37px !important;padding-bottom: 37px !important;padding-left: 37px !important;background-color: #fbfbfb !important;border-left-color: #eae9e9 !important;border-left-style: solid !important;border-right-color: #eae9e9 !important;border-right-style: solid !important;border-top-color: #eae9e9 !important;border-top-style: solid !important;border-bottom-color: #eae9e9 !important;border-bottom-style: solid !important;}.vc_custom_1519795993386{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519796008745{margin-top: 10px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}.vc_custom_1519730957211{margin-top: 35px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519795640412{margin-top: 0px !important;margin-bottom: 24px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519795721719{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519795763314{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1519795750993{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript></head>
+
+
+<body  class="page-template-default page page-id-7300 wp-embed-responsive theme-consultix woocommerce-no-js tribe-no-js radiantthemes radiantthemes-consultix wpb-js-composer js-comp-ver-6.5.0 vc_responsive" data-nicescroll-cursorcolor="" data-nicescroll-cursorwidth="7px">
+	
+	
+	<!-- overlay -->
+	<div class="overlay"></div>
+	<!-- overlay -->
+
+	<!-- scrollup -->
+			<div class="scrollup left">
+			<i class="fa fa-angle-up"></i>
+	</div>
+	<!-- scrollup -->
+					
+	
+<!-- wraper_header -->
+<header class="wraper_header style-nine">
+    <!-- wraper_header_top -->
+	<div class="wraper_header_top">
+		<div class="container">
+			<!-- row -->
+			<div class="row header_top">
+			    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 visible-lg visible-md visible-sm hidden-xs text-left">
+			        <!-- header_top_item -->
+			        <div class="header_top_item">
+						<p>Need Help? Talk to an Expert <a href="#">888-123-4567</a></p>
+			        </div>
+			        <!-- header_top_item -->
+			    </div>
+			    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+			        <!-- header_top_item -->
+			        <div class="header_top_item">
+    			            					<!-- header-data-social -->
+    					<div class="header-data-social">
+    					    <p>Follow Us:</p>
+    					        					    <!-- social -->
+        					<ul class="social">
+        						        							<li class="google-plus"><a href="#" rel="publisher" target=&quot;_blank&quot;><i class="fa fa-google-plus"></i></a></li>
+        						        						        							<li class="facebook"><a href="#" target=&quot;_blank&quot;><i class="fa fa-facebook"></i></a></li>
+        						        						        							<li class="twitter"><a href="#" target=&quot;_blank&quot;><i class="fa fa-twitter"></i></a></li>
+        						        						        							<li class="vimeo"><a href="#" target=&quot;_blank&quot;><i class="fa fa-vimeo"></i></a></li>
+        						        						        						        						        						        						        						        						        						        						        						        						        						        						        					</ul>
+        					<!-- social -->
+    					</div>
+    					<!-- header-data-social -->
+					</div>
+			        <!-- header_top_item -->
+			    </div>
+			</div>
+			<!-- row -->
+		</div>
+	</div>
+	<!-- wraper_header_top -->
+	<!-- wraper_header_main -->
+                <div class="wraper_header_main i-am-sticky">
+        		<div class="container">
+			<!-- header_main -->
+			<div class="header_main">
+				<!-- brand-logo -->
+				<div class="brand-logo radiantthemes-retina">
+					<a href="#"><img src="http://localhost/ZUM/test/wordpress/wp-content/uploads/2018/04/logo.png" alt="header_nine_logo"></a>
+				</div>
+				<!-- brand-logo -->
+				<!-- responsive-nav -->
+				<div class="responsive-nav hidden-lg hidden-md hidden-sm visible-xs" data-responsive-nav-displace="true">
+					<i class="fa fa-bars"></i>
+				</div>
+				<!-- responsive-nav -->
+								<!-- header_main_action -->
+				<div class="header_main_action visible-lg visible-md visible-sm hidden-xs">
+					<ul>
+												<li class="header-cart-bar">
+						    <a class="header-cart-bar-icon" href="http://localhost/ZUM/test/wordpress/cart/">
+							    <i class="fa fa-shopping-cart"></i>
+							    <span class="cart-count">0</span>
+							</a>
+						</li>
+																											<li class="floating-searchbar">
+									<i class="fa fa-search"></i>
+									<i class="fa fa-times"></i>
+									<!-- floating-search-bar -->
+									<div class="floating-search-bar">
+										<form role="search" method="get" class="search-form" action="http://localhost/ZUM/test/wordpress/">
+										<div class="form-row">
+											<input type="search" placeholder="Search..." value="" name="s" required>
+											<button type="submit"><i class="fa fa-search"></i></button>
+										</div>
+										</form>
+									</div>
+									<!-- floating-search-bar -->
+								</li>
+																		</ul>
+				</div>
+				<!-- header_main_action -->
+				<!-- nav -->
+				<nav class="nav visible-lg visible-md visible-sm hidden-xs">
+					<div class="menu-header-menu-container"><ul id="menu-header-menu" class="menu rt-mega-menu-transition-default"><li id="menu-item-9651" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-flyout rt-mega-menu-hover item-9651"><a  href="http://localhost/ZUM/test/wordpress/home-2/">Home</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-8957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home rt-mega-menu-hover item-8957"><a  href="http://localhost/ZUM/test/wordpress/">Home</a></li>
+</ul>
+</li>
+<li id="menu-item-1093" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-flyout rt-mega-menu-hover item-1093"><a >About Us</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-9251" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9251"><a  href="http://localhost/ZUM/test/wordpress/about-our-company/">About Our Company</a></li>
+	<li id="menu-item-9653" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9653"><a  href="http://localhost/ZUM/test/wordpress/about-our-company-2/">About Our Company</a></li>
+	<li id="menu-item-5663" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-5663"><a  href="http://localhost/ZUM/test/wordpress/company-overview/">Company Overview</a></li>
+	<li id="menu-item-5661" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-5661"><a  href="http://localhost/ZUM/test/wordpress/our-history/">Our History</a></li>
+	<li id="menu-item-9250" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9250"><a  href="http://localhost/ZUM/test/wordpress/management/">Management</a></li>
+	<li id="menu-item-9652" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9652"><a  href="http://localhost/ZUM/test/wordpress/management-2/">Management</a></li>
+	<li id="menu-item-5662" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-5662"><a  href="http://localhost/ZUM/test/wordpress/mission-values/">Mission &#038; Values</a></li>
+	<li id="menu-item-5660" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-5660"><a  href="http://localhost/ZUM/test/wordpress/locations/">Locations</a></li>
+	<li id="menu-item-1665" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-1665"><a  href="http://localhost/ZUM/test/wordpress/career/">Career</a></li>
+	<li id="menu-item-3373" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-3373"><a  href="#">Team</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-2035" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-2035"><a  href="http://localhost/ZUM/test/wordpress/team-in-list-view/">Team In List View</a></li>
+		<li id="menu-item-3372" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-3372"><a  href="http://localhost/ZUM/test/wordpress/team-in-grid-view/">Team In Grid View</a></li>
+	</ul>
+</li>
+	<li id="menu-item-8098" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-8098"><a  href="http://localhost/ZUM/test/wordpress/testimonials/">Testimonials</a></li>
+	<li id="menu-item-8130" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-8130"><a  href="http://localhost/ZUM/test/wordpress/frequently-asked-questions/">FAQ</a></li>
+</ul>
+</li>
+<li id="menu-item-1010" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor menu-item-has-children menu-flyout rt-mega-menu-hover item-1010"><a >Pages</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-5665" class="menu-item menu-item-type-custom menu-item-object-custom rt-mega-menu-hover item-5665"><a  href="https://themes.radiantthemes.com/consultix/demo-one/events/">Events</a></li>
+	<li id="menu-item-6548" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-6548"><a  href="#">Case Studies</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-5994" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-5994"><a  href="http://localhost/ZUM/test/wordpress/case-studies-style-one/">Style One</a></li>
+		<li id="menu-item-6549" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-6549"><a  href="http://localhost/ZUM/test/wordpress/case-studies-style-two/">Style Two</a></li>
+		<li id="menu-item-7224" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7224"><a  href="http://localhost/ZUM/test/wordpress/case-studies-style-three/">Style Three</a></li>
+		<li id="menu-item-7223" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7223"><a  href="http://localhost/ZUM/test/wordpress/case-studies-style-four/">Style Four</a></li>
+	</ul>
+</li>
+	<li id="menu-item-2590" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children rt-mega-menu-hover item-2590"><a >Contact Us</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-1096" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-1096"><a  href="http://localhost/ZUM/test/wordpress/contact-us-page-1/">Contact Us One</a></li>
+		<li id="menu-item-7362" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7362"><a  href="http://localhost/ZUM/test/wordpress/contact-us-style-two/">Contact Us Two</a></li>
+		<li id="menu-item-7313" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7313"><a  href="http://localhost/ZUM/test/wordpress/contact-us-style-three/">Contact Us  Three</a></li>
+		<li id="menu-item-7312" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7300 current_page_item rt-mega-menu-hover item-7312"><a  href="http://localhost/ZUM/test/wordpress/contact-us-style-four/">Contact Us Four</a></li>
+	</ul>
+</li>
+	<li id="menu-item-4667" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-4667">
+	<ul class="rt-sub-menu">
+		<li id="menu-item-4670" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4670"></li>
+		<li id="menu-item-4671" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4671"></li>
+		<li id="menu-item-4672" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4672"></li>
+		<li id="menu-item-4673" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4673"></li>
+		<li id="menu-item-4674" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4674"></li>
+	</ul>
+</li>
+	<li id="menu-item-4668" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-4668">
+	<ul class="rt-sub-menu">
+		<li id="menu-item-6694" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6694"></li>
+		<li id="menu-item-6695" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6695"></li>
+		<li id="menu-item-6696" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6696"></li>
+		<li id="menu-item-6697" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6697"></li>
+		<li id="menu-item-6698" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6698"></li>
+		<li id="menu-item-6699" class="menu-item menu-item-type-post_type menu-item-object-portfolio rt-mega-menu-hover item-6699"></li>
+	</ul>
+</li>
+	<li id="menu-item-2952" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-2952"><a  href="#">Coming Soon</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-2895" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-2895"><a  target="_blank" href="http://localhost/ZUM/test/wordpress/coming-soon-1/">Coming Soon (Light)</a></li>
+		<li id="menu-item-2951" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-2951"><a  target="_blank" href="http://localhost/ZUM/test/wordpress/coming-soon-2/">Coming Soon (Dark)</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3360" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-3360"><a  href="http://localhost/ZUM/test/wordpress/maintenance-mode/">Maintenance Mode</a></li>
+	<li id="menu-item-1100" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-1100"><a  href="#">404 Page</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-7158" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7158"><a  href="http://localhost/ZUM/test/wordpress/404-dark/">Dark</a></li>
+		<li id="menu-item-7159" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7159"><a  href="http://localhost/ZUM/test/wordpress/404-light/">Light</a></li>
+		<li id="menu-item-7157" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7157"><a  href="http://localhost/ZUM/test/wordpress/404-with-custom-background/">Custom Background</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-2589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-flyout rt-mega-menu-hover item-2589"><a >Services</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-6582" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-6582"><a  href="http://localhost/ZUM/test/wordpress/financial-planning/">Financial Planning</a></li>
+	<li id="menu-item-9375" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9375"><a  href="http://localhost/ZUM/test/wordpress/software-research/">Software &#038; Research</a></li>
+	<li id="menu-item-9658" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9658"><a  href="http://localhost/ZUM/test/wordpress/software-research-3/">Software &#038; Research</a></li>
+	<li id="menu-item-6587" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-6587"><a  href="http://localhost/ZUM/test/wordpress/business-services/">Business Services</a></li>
+	<li id="menu-item-6583" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-6583"><a  href="http://localhost/ZUM/test/wordpress/quality-resourcing/">Quality Resourcing</a></li>
+	<li id="menu-item-6584" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-6584"><a  href="http://localhost/ZUM/test/wordpress/travel-and-aviation/">Travel and Aviation</a></li>
+	<li id="menu-item-7011" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-7011"><a  href="http://localhost/ZUM/test/wordpress/healthcare-services/">Healthcare Services</a></li>
+</ul>
+</li>
+<li id="menu-item-3634" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-flyout rt-mega-menu-hover item-3634"><a  href="http://localhost/ZUM/test/wordpress/blog/">Blog</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-4699" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-4699"><a >Style One</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-4702" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4702"><a  href="http://localhost/ZUM/test/wordpress/blog-style-one-with-left-sidebar/">With Left Sidebar</a></li>
+		<li id="menu-item-4703" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4703"><a  href="http://localhost/ZUM/test/wordpress/blog-style-one-with-right-sidebar/">With Right Sidebar</a></li>
+		<li id="menu-item-4704" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4704"><a  href="http://localhost/ZUM/test/wordpress/blog-style-one-without-sidebar/">Without Sidebar</a></li>
+	</ul>
+</li>
+	<li id="menu-item-4700" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-4700"><a >Style Two</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-4708" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4708"><a  href="http://localhost/ZUM/test/wordpress/blog-style-two-with-left-sidebar/">With Left Sidebar</a></li>
+		<li id="menu-item-4709" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4709"><a  href="http://localhost/ZUM/test/wordpress/blog-style-two-with-right-sidebar/">With Right Sidebar</a></li>
+		<li id="menu-item-4710" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4710"><a  href="http://localhost/ZUM/test/wordpress/blog-style-two-without-sidebar/">Without Sidebar</a></li>
+	</ul>
+</li>
+	<li id="menu-item-4701" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children rt-mega-menu-hover item-4701"><a >Style Three</a>
+	<ul class="rt-sub-menu">
+		<li id="menu-item-4705" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4705"><a  href="http://localhost/ZUM/test/wordpress/blog-style-three-with-left-sidebar/">With Left Sidebar</a></li>
+		<li id="menu-item-4706" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4706"><a  href="http://localhost/ZUM/test/wordpress/blog-style-three-with-right-sidebar/">With Right Sidebar</a></li>
+		<li id="menu-item-4707" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-4707"><a  href="http://localhost/ZUM/test/wordpress/blog-style-three-without-sidebar/">Without Sidebar</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-3783" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-flyout rt-mega-menu-hover item-3783"><a  href="http://localhost/ZUM/test/wordpress/shop-2/">Shop</a>
+<ul class="rt-sub-menu">
+	<li id="menu-item-9638" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9638"><a  href="http://localhost/ZUM/test/wordpress/portfolio-2/">Portfolio</a></li>
+	<li id="menu-item-9640" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9640"><a  href="http://localhost/ZUM/test/wordpress/shop-3/">Shop</a></li>
+	<li id="menu-item-9642" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9642"><a  href="http://localhost/ZUM/test/wordpress/my-account-3/">My Account</a></li>
+	<li id="menu-item-9644" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9644"><a  href="http://localhost/ZUM/test/wordpress/checkout-3/">Checkout</a></li>
+	<li id="menu-item-9646" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9646"><a  href="http://localhost/ZUM/test/wordpress/cart-3/">Cart</a></li>
+	<li id="menu-item-9648" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9648"><a  href="http://localhost/ZUM/test/wordpress/portfolio-listing-style-three-2/">Portfolio Listing Style Three</a></li>
+	<li id="menu-item-9650" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9650"><a  href="http://localhost/ZUM/test/wordpress/portfolio-listing-style-four-2/">Portfolio Listing Style Four</a></li>
+	<li id="menu-item-9660" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9660"><a  href="http://localhost/ZUM/test/wordpress/home-2/">Home</a></li>
+	<li id="menu-item-9670" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9670"><a  href="http://localhost/ZUM/test/wordpress/software-research-3/">Software &#038; Research</a></li>
+	<li id="menu-item-9672" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9672"><a  href="http://localhost/ZUM/test/wordpress/about-our-company-2/">About Our Company</a></li>
+	<li id="menu-item-9674" class="menu-item menu-item-type-post_type menu-item-object-page rt-mega-menu-hover item-9674"><a  href="http://localhost/ZUM/test/wordpress/management-2/">Management</a></li>
+</ul>
+</li>
+<!-- GTranslate: https://gtranslate.io/ -->
+<li style="position:relative;" class="menu-item menu-item-gtranslate"><a href="#" onclick="doGTranslate('en|fr');return false;" title="French" class="glink nturl notranslate"><img src="images/fr.png" height="16" width="16" alt="French" /> <span>FR</span></a></li> <style>
+#goog-gt-tt {display:none !important;}
+.goog-te-banner-frame {display:none !important;}
+.goog-te-menu-value:hover {text-decoration:none !important;}
+.goog-text-highlight {background-color:transparent !important;box-shadow:none !important;}
+body {top:0 !important;}
+#google_translate_element2 {display:none!important;}
+</style>
+
+<div id="google_translate_element2"></div>
+<script>
+function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+</script><script src="js/element.js"></script>
+
+
+<script>
+function GTranslateGetCurrentLang() {var keyValue = document['cookie'].match('(^|;) ?googtrans=([^;]*)(;|$)');return keyValue ? keyValue[2].split('/')[2] : null;}
+function GTranslateFireEvent(element,event){try{if(document.createEventObject){var evt=document.createEventObject();element.fireEvent('on'+event,evt)}else{var evt=document.createEvent('HTMLEvents');evt.initEvent(event,true,true);element.dispatchEvent(evt)}}catch(e){}}
+function doGTranslate(lang_pair){if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];if(GTranslateGetCurrentLang() == null && lang == lang_pair.split('|')[0])return;var teCombo;var sel=document.getElementsByTagName('select');for(var i=0;i<sel.length;i++)if(sel[i].className.indexOf('goog-te-combo')!=-1){teCombo=sel[i];break;}if(document.getElementById('google_translate_element2')==null||document.getElementById('google_translate_element2').innerHTML.length==0||teCombo.length==0||teCombo.innerHTML.length==0){setTimeout(function(){doGTranslate(lang_pair)},500)}else{teCombo.value=lang;GTranslateFireEvent(teCombo,'change');GTranslateFireEvent(teCombo,'change')}}
+</script>
+</ul></div>				</nav>
+				<!-- nav -->
+			</div>
+			<!-- header_main -->
+		</div>
+	</div>
+	<!-- wraper_header_main -->
+</header>
+<!-- wraper_header -->
+
+	
+						<!-- wraper_header_bannerinner -->
+					
+					<div class="wraper_inner_banner">
+								<!-- wraper_inner_banner_main -->
+			<div class="wraper_inner_banner_main">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- inner_banner_main -->
+							<div class="inner_banner_main">
+																	<p class="title">
+										Contact Us Style Four									</p>
+															</div>
+							<!-- inner_banner_main -->
+						</div>
+					</div>
+					<!-- row -->
+				</div>
+			</div>
+			<!-- wraper_inner_banner_main -->
+									<!-- wraper_inner_banner_breadcrumb -->
+			<div class="wraper_inner_banner_breadcrumb">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- inner_banner_breadcrumb -->
+							<div class="inner_banner_breadcrumb">
+								<div id="crumbs"><a href="#">Home</a> <span class="gap"><i class="el el-chevron-right"></i></span> <span class="current">Contact Us Style Four</span></div>							</div>
+							<!-- inner_banner_breadcrumb -->
+						</div>
+					</div>
+					<!-- row -->
+				</div>
+			</div>
+			<!-- wraper_inner_banner_breadcrumb -->
+					</div>
+		<!-- wraper_header_bannerinner -->
+<!-- wraper_header_bannerinner -->
+	<!-- #page -->
+	<div id="page" class="site">
+		<!-- #content -->
+		<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+    	<main id="main" class="site-main">
+    		    			<div class="container">
+    				
+<article id="post-7300" class="post-7300 page type-page status-publish hentry">
+	<header class="entry-header">
+			</header><!-- .entry-header -->
+	<div class="entry-content">
+		<section data-vc-full-width="true" data-vc-full-width-init="false" class="vc_section vc_custom_1519729320894 vc_section-has-fill"><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1519797836561 vc_column-gap-30 vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-4 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519796825636"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1519813891054">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="460" height="305" src="images/new-yourk-1.png" class="vc_single_image-img attachment-full" alt="new-yourk" loading="lazy" /></div>
+		</figure>
+	</div>
+<div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1519797560097 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519814004473"><div class="wpb_wrapper"><h2 style="font-size: 16px;line-height: 27px;text-align: left" class="vc_custom_heading" >NEW YORK CITY OFFICE<br />
+</h2>
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519796779689 contact-info-custom" >
+		<div class="wpb_wrapper">
+			<ul>
+<li><i class="fa fa-map-marker"></i>908 New Hampshire Avenue, 95822</li>
+<li><i class="fa fa-phone"></i>(888)123-4567</li>
+<li><i class="fa fa-envelope"></i>info@example.com</li>
+</ul>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div><div class="wpb_column vc_column_container vc_col-sm-4 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519797124883"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1519813920630">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="460" height="305" src="images/London-Office-1.png" class="vc_single_image-img attachment-full" alt="London-Office" loading="lazy" /></div>
+		</figure>
+	</div>
+<div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1519797578127"><div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519814036338"><div class="wpb_wrapper"><h2 style="font-size: 16px;line-height: 27px;text-align: left" class="vc_custom_heading" >LONDON OFFICE<br />
+</h2>
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519796779689 contact-info-custom" >
+		<div class="wpb_wrapper">
+			<ul>
+<li><i class="fa fa-map-marker"></i>908 New Hampshire Avenue, 95822</li>
+<li><i class="fa fa-phone"></i>(888)123-4567</li>
+<li><i class="fa fa-envelope"></i>info@example.com</li>
+</ul>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div><div class="wpb_column vc_column_container vc_col-sm-4 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519796854095"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1519813970669">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="460" height="305" src="images/German-1.png" class="vc_single_image-img attachment-full" alt="" loading="lazy" /></div>
+		</figure>
+	</div>
+<div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1519797589486"><div class="wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519814061712"><div class="wpb_wrapper"><h2 style="font-size: 16px;line-height: 27px;text-align: left" class="vc_custom_heading" >BERLIN OFFICE<br />
+</h2>
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519796779689 contact-info-custom" >
+		<div class="wpb_wrapper">
+			<ul>
+<li><i class="fa fa-map-marker"></i>908 New Hampshire Avenue, 95822</li>
+<li><i class="fa fa-phone"></i>(888)123-4567</li>
+<li><i class="fa fa-envelope"></i>info@example.com</li>
+</ul>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div class="vc_row wpb_row vc_row-fluid vc_custom_1519797771824 vc_column-gap-15 vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1519797724944"><div class="wpb_wrapper"><h2 style="font-size: 36px;line-height: 45px;text-align: center" class="vc_custom_heading vc_custom_1519795993386" >We Love to Hear From You</h2>
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519796008745" >
+		<div class="wpb_wrapper">
+			<p style="text-align: center;">Please call or email contact form and we will be happy to assist you.</p>
+
+		</div>
+	</div>
+<div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1519730957211"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><!-- rt-cf7 --><div class="radiant-contact-form rtce59b27aff3bcb7 element-one "  ><div role="form" class="wpcf7" id="wpcf7-f7230-p7300-o1" lang="en-US" dir="ltr">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/ZUM/test/wordpress/contact-us-style-four/#wpcf7-f7230-p7300-o1" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="7230" />
+<input type="hidden" name="_wpcf7_version" value="5.3.2" />
+<input type="hidden" name="_wpcf7_locale" value="en_US" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f7230-p7300-o1" />
+<input type="hidden" name="_wpcf7_container_post" value="7300" />
+<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap Name"><input type="text" name="Name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="First Name:" /></span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap Name"><input type="text" name="Name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Last Name:" /></span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap email"><input type="email" name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your mail:" /></span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap phone"><input type="tel" name="phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-tel" aria-invalid="false" placeholder="Your Phone:" /></span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap YourCompany"><input type="text" name="YourCompany" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Your Company:" /></span>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap subject"><input type="text" name="subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Subject:" /></span>
+</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="form-row">
+<span class="wpcf7-form-control-wrap message"><textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Message:"></textarea></span>
+</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="form-row last button text-center">
+<input type="submit" value="SUBMIT" class="wpcf7-form-control wpcf7-submit custom-btn-submit" />
+</div>
+</div>
+</div>
+<div class="wpcf7-response-output" aria-hidden="true"></div></form></div></div><!-- rt-cf7 --></div></div></div></div></div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="wpb_gmaps_widget wpb_content_element map"><div class="wpb_wrapper"><div class="wpb_map_wraper"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.840108181598!2d144.95373631495667!3d-37.81721397975169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2sin!4v1519731144285" width="1140" height="430" frameborder="0" style="border:0" allowfullscreen></iframe></div></div></div><h3 style="font-size: 20px;line-height: 24px;text-align: left" class="vc_custom_heading vc_custom_1519795640412" >Contact Info</h3><div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1519795721719"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519795763314 contact-info-custom" >
+		<div class="wpb_wrapper">
+			<p><strong>Address:</strong> PO Box 16122 Collins Street West Victoria 8007 Australia</p>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1519795750993 contact-info-custom" >
+		<div class="wpb_wrapper">
+			<p><strong>Email:</strong> info@example.com</p>
+<p><strong>Phone:</strong> (888)123-4567</p>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div></div></section><div class="vc_row-full-width vc_clearfix"></div>
+	</div><!-- .entry-content -->
+	</article><!-- #post-7300 -->    			</div>
+    		    	</main><!-- #main -->
+    </div><!-- #primary -->
+
+	</div>
+	<!-- #content -->
+</div>
+<!-- #page -->
+
+
+
+<!-- wraper_footer -->
+<footer class="wraper_footer style-three">
+    	<!-- wraper_footer_main -->
+	<div class="wraper_footer_main">
+		<div class="container">
+			<!-- row -->
+			<div class="row footer_main">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><div class="footer_main_item matchHeight"><section id="media_image-1" class="widget widget_media_image"><a href="#"><img width="182" height="42" src="images/footer-logo.png" class="image wp-image-9429  attachment-full size-full" alt="" loading="lazy" style="max-width: 100%; height: auto;" /></a></section><section id="consultix_contact_box_widget-1" class="widget widget_consultix_contact_box_widget"><ul class="contact">
+							<li class="address">
+								PO Box 16122 Collins Street West Victoria 8007 Australia</li>
+							<li class="phone">
+								Phone: (888) 123-4567</li>
+							<li class="email">
+								Email: info@example.com</li>
+
+						</ul></section></div>
+						</div><div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><div class="footer_main_item matchHeight"><section id="nav_menu-4" class="widget widget_nav_menu"><h5 class="widget-title">Our Services</h5><div class="menu-our-services-container"><ul id="menu-our-services" class="menu rt-mega-menu-transition-default"><li id="menu-item-6575" class="menu-item menu-item-type-post_type menu-item-object-page menu-flyout rt-mega-menu-hover item-6575"><a  href="http://localhost/ZUM/test/wordpress/financial-planning/">Financial Planning</a></li>
+<li id="menu-item-6578" class="menu-item menu-item-type-post_type menu-item-object-page menu-flyout rt-mega-menu-hover item-6578"><a  href="http://localhost/ZUM/test/wordpress/business-services/">Business Services</a></li>
+<li id="menu-item-6577" class="menu-item menu-item-type-post_type menu-item-object-page menu-flyout rt-mega-menu-hover item-6577"><a  href="http://localhost/ZUM/test/wordpress/quality-resourcing/">Quality Resourcing</a></li>
+<li id="menu-item-6576" class="menu-item menu-item-type-post_type menu-item-object-page menu-flyout rt-mega-menu-hover item-6576"><a  href="http://localhost/ZUM/test/wordpress/travel-and-aviation/">Travel and Aviation</a></li>
+<li id="menu-item-7012" class="menu-item menu-item-type-post_type menu-item-object-page menu-flyout rt-mega-menu-hover item-7012"><a  href="http://localhost/ZUM/test/wordpress/healthcare-services/">Healthcare Services</a></li>
+</ul></div></section></div>
+						</div><div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><div class="footer_main_item matchHeight">
+		<section id="recent-posts-3" class="widget widget_recent_entries">
+		<h5 class="widget-title">Recent Post</h5>
+		<ul>
+											<li>
+					<a href="#">Hello world!</a>
+											<span class="post-date">February 6, 2021</span>
+									</li>
+											<li>
+					<a href="#">Participate in staff meetings manage dedicated to marketing</a>
+											<span class="post-date">November 25, 2017</span>
+									</li>
+					</ul>
+
+		</section></div>
+						</div><div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><div class="footer_main_item matchHeight"><section id="text-1" class="widget widget_text"><h5 class="widget-title">Newsletter</h5>			<div class="textwidget"><script>(function() {
+	window.mc4wp = window.mc4wp || {
+		listeners: [],
+		forms: {
+			on: function(evt, cb) {
+				window.mc4wp.listeners.push(
+					{
+						event   : evt,
+						callback: cb
+					}
+				);
+			}
+		}
+	}
+})();
+</script><!-- Mailchimp for WordPress v4.8.3 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-287" method="post" data-id="287" data-name="Test" ><div class="mc4wp-form-fields"><input type="text" name="NAME" value="Name" required />
+<input type="email" name="Email" value="Email" required />
+
+<button type="submit">Submit</button> 
+</div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1612949274" /><input type="hidden" name="_mc4wp_form_id" value="287" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /><div class="mc4wp-response"></div></form><!-- / Mailchimp for WordPress Plugin -->
+</div>
+		</section></div>
+						</div>			</div>
+			<!-- row -->
+		</div>
+	</div>
+	<!-- wraper_footer_main -->
+    	<!-- wraper_footer_copyright -->
+	<div class="wraper_footer_copyright">
+		<div class="container">
+			<!-- row -->
+			<div class="row footer_copyright">
+			    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<!-- footer_copyright_item -->
+					<div class="footer_copyright_item text-left">
+						<p>Consultix Theme © All Rights Reserved</p>
+					</div>
+					<!-- footer_copyright_item -->
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<!-- footer_copyright_item -->
+					<div class="footer_copyright_item text-right">
+						<div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu rt-mega-menu-transition-default"><li id="menu-item-9373" class="menu-item menu-item-type-custom menu-item-object-custom menu-flyout rt-mega-menu-hover item-9373"><a  href="#">Terms and Conditions</a></li>
+<li id="menu-item-9656" class="menu-item menu-item-type-custom menu-item-object-custom menu-flyout rt-mega-menu-hover item-9656"><a  href="#">Terms and Conditions</a></li>
+<li id="menu-item-9374" class="menu-item menu-item-type-custom menu-item-object-custom menu-flyout rt-mega-menu-hover item-9374"><a  href="#">Privacy Policy</a></li>
+<li id="menu-item-9657" class="menu-item menu-item-type-custom menu-item-object-custom menu-flyout rt-mega-menu-hover item-9657"><a  href="#">Privacy Policy</a></li>
+</ul></div>					</div>
+					<!-- footer_copyright_item -->
+				</div>
+				
+			</div>
+			<!-- row -->
+		</div>
+	</div>
+	<!-- wraper_footer_copyright -->
+</footer>
+<!-- wraper_footer -->
+<div style="position:fixed;top:10px;right:8%;z-index:999999;" id="gtranslate_wrapper"><!-- GTranslate: https://gtranslate.io/ -->
+<a href="#" onclick="doGTranslate('en|fr');return false;" title="French" class="glink nturl notranslate"><img src="images/fr.png" height="16" width="16" alt="French" /> <span>FR</span></a> <style>
+#goog-gt-tt {display:none !important;}
+.goog-te-banner-frame {display:none !important;}
+.goog-te-menu-value:hover {text-decoration:none !important;}
+.goog-text-highlight {background-color:transparent !important;box-shadow:none !important;}
+body {top:0 !important;}
+#google_translate_element2 {display:none!important;}
+</style>
+
+<div id="google_translate_element2"></div>
+<script>
+function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+</script><script src="js/element.js"></script>
+
+
+<script>
+function GTranslateGetCurrentLang() {var keyValue = document['cookie'].match('(^|;) ?googtrans=([^;]*)(;|$)');return keyValue ? keyValue[2].split('/')[2] : null;}
+function GTranslateFireEvent(element,event){try{if(document.createEventObject){var evt=document.createEventObject();element.fireEvent('on'+event,evt)}else{var evt=document.createEvent('HTMLEvents');evt.initEvent(event,true,true);element.dispatchEvent(evt)}}catch(e){}}
+function doGTranslate(lang_pair){if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];if(GTranslateGetCurrentLang() == null && lang == lang_pair.split('|')[0])return;var teCombo;var sel=document.getElementsByTagName('select');for(var i=0;i<sel.length;i++)if(sel[i].className.indexOf('goog-te-combo')!=-1){teCombo=sel[i];break;}if(document.getElementById('google_translate_element2')==null||document.getElementById('google_translate_element2').innerHTML.length==0||teCombo.length==0||teCombo.innerHTML.length==0){setTimeout(function(){doGTranslate(lang_pair)},500)}else{teCombo.value=lang;GTranslateFireEvent(teCombo,'change');GTranslateFireEvent(teCombo,'change')}}
+</script>
+</div>		<script>
+		( function ( body ) {
+			'use strict';
+			body.className = body.className.replace( /\btribe-no-js\b/, 'tribe-js' );
+		} )( document.body );
+		</script>
+		<script>(function() {function maybePrefixUrlField() {
+	if (this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+		this.value = "http://" + this.value;
+	}
+}
+
+var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+if (urlFields) {
+	for (var j=0; j < urlFields.length; j++) {
+		urlFields[j].addEventListener('blur', maybePrefixUrlField);
+	}
+}
+})();</script><script> /* <![CDATA[ */var tribe_l10n_datatables = {"aria":{"sort_ascending":": activate to sort column ascending","sort_descending":": activate to sort column descending"},"length_menu":"Show _MENU_ entries","empty_table":"No data available in table","info":"Showing _START_ to _END_ of _TOTAL_ entries","info_empty":"Showing 0 to 0 of 0 entries","info_filtered":"(filtered from _MAX_ total entries)","zero_records":"No matching records found","search":"Search:","all_selected_text":"All items on this page were selected. ","select_all_link":"Select all pages","clear_selection":"Clear Selection.","pagination":{"all":"All","next":"Next","previous":"Previous"},"select":{"rows":{"0":"","_":": Selected %d rows","1":": Selected 1 row"}},"datepicker":{"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesMin":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Prev","currentText":"Today","closeText":"Done","today":"Today","clear":"Clear"}};/* ]]> */ </script>	<script type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})()
+	</script>
+	<link rel='stylesheet' href='css/radiantthemes-addons-cf7-css-radiantthemes-contact-form-element-one.css'>
+<style id='radiantthemes_cf7_one-inline-css' type='text/css'>
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=submit],
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=button],.radiant-contact-form.rtce59b27aff3bcb7 .form-row button[type=submit] {   background-color:#221543; color:#ffffff; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=submit]:hover, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=button]:hover, .radiant-contact-form.rtce59b27aff3bcb7 .form-row button[type=submit]:hover {   background-color:#7866a6; color:#ffffff; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = text], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = email], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = url], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = tel], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = number], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = password], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = date], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = time], .radiant-contact-form.rtce59b27aff3bcb7 .form-row select, .radiant-contact-form.rtce59b27aff3bcb7 .form-row textarea {   background-color: #f8f8f8; padding-top:6px; padding-right:10px; padding-bottom:6px; padding-left:10px; border-radius: 0px 0px 0px 0px; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = text], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = email], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = url], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = tel], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = number], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = password], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = date], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type = time], .radiant-contact-form.rtce59b27aff3bcb7 .form-row select, .radiant-contact-form.rtce59b27aff3bcb7 .form-row textarea {   color  : #989898; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=text]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=email]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=url]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=tel]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=number]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=password]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=date]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=time]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row select:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row textarea:focus {   color:#464646; background-color:#ffffff; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=text]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=email]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=url]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=tel]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=number]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=password]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=date]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=time]:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row select:focus, .radiant-contact-form.rtce59b27aff3bcb7 .form-row textarea:focus {   border-top:1px solid #7866a6; border-right:1px solid #7866a6; border-bottom:1px solid #7866a6; border-left:1px solid #7866a6; }
+.radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=text], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=email], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=url], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=tel], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=number], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=password], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=date], .radiant-contact-form.rtce59b27aff3bcb7 .form-row input[type=time], .radiant-contact-form.rtce59b27aff3bcb7 .form-row select, .radiant-contact-form.rtce59b27aff3bcb7 .form-row textarea {   border-top:1px solid #d8d8d8; border-right:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8; border-left:1px solid #d8d8d8; }
+</style>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"http:\/\/localhost\/ZUM\/test\/wordpress\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='js/scripts.js' id='contact-form-7-js'></script>
+<script type='text/javascript' src='js/rt-megamenu.js' id='rt-megamenu-front-end-js-js'></script>
+<script type='text/javascript' src='js/js.cookie.js' id='js-cookie-js'></script>
+<script type='text/javascript' id='woocommerce-js-extra'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/ZUM\/test\/wordpress\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/ZUM\/test\/wordpress\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='js/woocommerce.js' id='woocommerce-js'></script>
+<script type='text/javascript' id='wc-cart-fragments-js-extra'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/ZUM\/test\/wordpress\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/ZUM\/test\/wordpress\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_f969023a0fd971ba64ce8f846283fac9","fragment_name":"wc_fragments_f969023a0fd971ba64ce8f846283fac9","request_timeout":"5000"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='js/cart-fragments.js' id='wc-cart-fragments-js'></script>
+<script type='text/javascript' src='js/bootstrap.min.js' id='bootstrap-js'></script>
+<script type='text/javascript' src='js/jquery.sidr.min.js' id='sidr-js'></script>
+<script type='text/javascript' src='js/jquery.matchHeight-min.js' id='matchHeight-js'></script>
+<script type='text/javascript' src='js/wow.min.js' id='wow-js'></script>
+<script type='text/javascript' src='js/jquery.nicescroll.min.js' id='nicescroll-js'></script>
+<script type='text/javascript' src='js/jquery.sticky.min.js' id='sticky-js'></script>
+<script type='text/javascript' src='js/radiantthemes-custom.js' id='consultix-custom-js'></script>
+<script type='text/javascript' src='js/wp-embed.js' id='wp-embed-js'></script>
+<script type='text/javascript' src='js/js_composer_front.min.js' id='wpb_composer_front_js-js'></script>
+<script type='text/javascript' src='js/forms.js' id='mc4wp-forms-api-js'></script>
+
+</body>
+</html>
+
+<!--This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) -->
